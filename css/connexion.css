@@ -1,0 +1,41 @@
+#connexion
+{
+    height: 600px;
+    display: flex;
+}
+form
+{
+    background-image: url("../img/objectif.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10%;
+    border: 2px solid #7916a1;
+    width: 42%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+form > input
+{
+    border: 1px solid #93d734;
+    border-radius: 10%;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #7916a1;
+    width: 80%;
+    margin: 0 auto;
+}
+.email
+{
+    width: 50%;
+}
+.submit
+{
+    border-radius: 40%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #7916a1;
+    background-color: #93d734;
+    width: 20%;
+}
