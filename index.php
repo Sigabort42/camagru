@@ -7,7 +7,7 @@
 
 // echo "salut toi comment tu va";
 
-var_dump($_POST);
+// var_dump($_POST);
 
 include("View/accueil.php");
 
