@@ -1,3 +1,6 @@
 # camagru
 Site web ecrit en full natif
-Html5 Css3 Javascript PHP7
+..*Html5
+..*Css3
+..*Javascript
+..*PHP7
