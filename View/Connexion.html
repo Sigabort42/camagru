@@ -1,7 +1,8 @@
 <section id="connexion">
-    <form method="POST" action="../index.php">
-        <input class="email" type="text" placeholder="@"/>
-        <input type="text" placeholder="Password"/>
-        <input class="submit" type="submit" placeholder="Connecter"/>
+    <form method="POST" action="index.php">
+        <input type="hidden" name="connexion" value="connexion"/>
+        <input class="email" type="text" name="email" placeholder="@"/>
+        <input type="text" name="pass" placeholder="Password"/>
+        <input class="submit" name="submit" type="submit" placeholder="Connecter" value="Connexion"/>
     </form>
 </section>
