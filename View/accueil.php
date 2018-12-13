@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +21,9 @@
 <body>
 
     <?php include("header.html") ;?>
-    <?php if ($_GET["choice"] == '1' || empty($_GET["choice"])): ?>
+    <?php if (isset($_SESSION["user"]) && empty($_GET["choice"])): ?>
+        <?php include("main.php") ;?>
+    <?php elseif ($_GET["choice"] == '1' || empty($_GET["choice"])): ?>
         <?php include("Connexion.html") ;?>
     <?php elseif ($_GET["choice"] == '2'): ?>
         <?php include("inscription.html") ;?>
