@@ -2,3 +2,17 @@ body
 {
     margin: 0 auto;
 }
+.bienvenue
+{
+    margin: 0 auto;
+    text-align: center;
+}
+#profil
+{
+    height: 600px;
+    display: flex;
+}
+#profil > a
+{
+    color: black;
+}

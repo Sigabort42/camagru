@@ -6,7 +6,7 @@
 
     </section>
     <section class="prise">
-        <h1>Bonjour <em><?= $_SESSION["user"]["prenom"];?></em></h1>
+        <h1>Salut <em><?= $_SESSION["user"]["prenom"];?></em></h1>
     </section>
     <section class="image_galerie">
         
