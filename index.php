@@ -19,6 +19,10 @@ if (isset($_GET["choice"]) && $_GET["choice"] == "4")
     session_destroy();
     header("Location: index.php");
 }
+else if (empty($_SESSION["png"]) && empty($_GET["choice"]))
+{
+    header("Location: /camagru/Modeles/main.php");
+}
 else if (isset($_POST["submit"]) && $_POST["submit"] == "Inscription")
 {
     $nom = htmlentities($_POST["nom"]);

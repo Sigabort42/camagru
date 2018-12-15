@@ -12,7 +12,16 @@ body
     height: 600px;
     display: flex;
 }
-#profil > a
+.reinitialise
 {
-    color: black;
+    margin: 0 auto;
+    color: #93d734;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 10%;
+}
+.reinitialise:hover
+{
+    color: #7916a1;
 }

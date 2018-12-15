@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+date_default_timezone_set('UTC');
 include("database.php");
 
 try
@@ -32,7 +33,7 @@ try
                 id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
                 nom VARCHAR(40) NOT NULL,
                 chemin VARCHAR(255) NOT NULL,
-                date_prise DATETIME NOT NULL,
+                date_prise VARCHAR(40) NOT NULL,
                 id_user INT UNSIGNED NOT NULL,
                 id_popularites INT UNSIGNED NOT NULL,
                 PRIMARY KEY (id)
@@ -43,13 +44,27 @@ try
                 id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
                 like_photo INT UNSIGNED,
                 commentaires TEXT,
-                date_commentaires DATETIME NOT NULL,
+                date_commentaires VARCHAR(40) NOT NULL,
                 id_user INT UNSIGNED,
                 id_galerie INT UNSIGNED NOT NULL,
                 PRIMARY KEY (id)
                 )
                 ENGINE=INNODB";
     $db->prepare($tables)->execute();
+    $tables = " CREATE TABLE img (
+                id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+                nom VARCHAR(40) NOT NULL,
+                chemin VARCHAR(255) NOT NULL,
+                date_ajout VARCHAR(255) NOT NULL,
+                PRIMARY KEY (id)
+                )
+                ENGINE=INNODB";
+    $db->prepare($tables)->execute();
+    $date = date(DATE_RFC2822);
+    $tables = " INSERT INTO img (nom, chemin, date_ajout)
+                VALUES      ('Le M', 'img/montage/majin.png', '$date'),
+                            ('Saiyan', 'img/montage/saiyan.png', '$date')";
+    $db->exec($tables);
 }
 catch(Exception $e)
 {
