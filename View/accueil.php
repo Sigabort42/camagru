@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/galerie.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/connexion.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/inscription.css" />
-    <script src="main.js"></script>
 </head>
 <body>
 
@@ -27,6 +26,7 @@
     <?php endif ;?>
     <?php if (isset($_SESSION["user"]) && empty($_GET["choice"])): ?>
         <?php include("main.php") ;?>
+        <script src="js/main.js"></script>
     <?php elseif ($_GET["choice"] == '1' || empty($_GET["choice"])): ?>
         <?php include("Connexion.html") ;?>
     <?php elseif ($_GET["choice"] == '2'): ?>
@@ -37,5 +37,6 @@
         <?php include("galerie.php") ;?>
     <?php endif ;?>
     <?php include("footer.php") ;?>
+    <script src="js/verif.js"></script>
 </body>
 </html>
