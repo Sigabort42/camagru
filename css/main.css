@@ -48,7 +48,7 @@ video
 {
     z-index: 10;
     position: relative;
-    top: -500px;
+    top: -400px;
     left: 200px;
     width: 40%;
 }
@@ -57,4 +57,14 @@ video
     display: flex;
     justify-content: center;
     margin: 40% auto;
+}
+.majin
+{
+    width: 10%;
+    height: 10%;
+}
+.saiya
+{
+    width: 50%;
+    height: 50%;
 }

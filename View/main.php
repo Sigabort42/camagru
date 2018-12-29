@@ -15,6 +15,6 @@
     </section>
     <section class="image_galerie">
         <canvas id="canvas"></canvas>
-        <!-- <img src="" id="photo"> -->
+        <img id="photo">
     </section>
 </main>

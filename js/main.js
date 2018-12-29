@@ -4,24 +4,30 @@ var flag = 0;
 var canvas = document.querySelector("#canvas");
 var photo = document.querySelector('#photo');
 var check = document.querySelectorAll(".image > input");
-console.log(check);
+var dragged = null;
 let i = 0;
+
+function start_drag()
+{
+    dragged = document.querySelector('.png_prise');
+}
+
+
 while (check[i])
 {
-    console.log("lolol");
     check[i].addEventListener("click", function(e){
         if (e.target.checked)
         {
-            console.log(e.target.dataset.chemin);
             let input = document.createElement("img");
             input.setAttribute("src", "/camagru/" + e.target.dataset.chemin);
-            input.setAttribute("class", "png_prise");
+            let name = e.target.dataset.chemin.substr(e.target.dataset.chemin.lastIndexOf("/") + 1, 5);
+            input.setAttribute("class", "png_prise " + name);
+            input.setAttribute("onmousedown", "start_drag()");
             let article = document.querySelector(".article");
             let res = article.append(input);
         }
         else
         {
-            console.log(e.target.dataset.chemin);
             let input = document.querySelector(".article > img");
             let article = document.querySelector(".article");
             let res = article.removeChild(input);
@@ -30,12 +36,78 @@ while (check[i])
     i++;
 }
 
+function getXMLHttpRequest() {
+	var xhr = null;
+	
+	if (window.XMLHttpRequest || window.ActiveXObject) {
+		if (window.ActiveXObject) {
+			try {
+				xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(e) {
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else {
+			xhr = new XMLHttpRequest(); 
+		}
+	} else {
+		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+		return null;
+	}
+	
+	return xhr;
+}
+
+function drag_onmousemove(event)
+{
+    console.log("mousemove");
+    if(dragged)
+    {
+        let x = event.clientX;
+        let y = event.clientY;
+        // dragged.style.position = 'relative';
+        dragged.style.left = x - 400 + 'px';
+        dragged.style.top = y - 654 + 'px';
+    }
+}
+
+function drag_onmouseup(event)
+{
+    console.log("mouseup");
+    dragged = null;
+}
+
+function addEvent(obj,event,fct)
+{
+    if(obj.attachEvent)
+        obj.attachEvent('on' + event,fct);
+    else
+        obj.addEventListener(event,fct,true);
+}
+
+addEvent(document.querySelector(".article"),'mousemove',drag_onmousemove);
+addEvent(document.querySelector(".article"),'mouseup',drag_onmouseup);
+
 function takepicture() {
+    let i = 0;
+    let str = "";
     canvas.width = 320;
     canvas.height = 320;
     canvas.getContext('2d').drawImage(document.querySelector('video'), 0, 0, 320, 320);
-    // var data = canvas.toDataURL('image/png');
-    // photo.setAttribute('src', data);
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+    let xhr = getXMLHttpRequest();
+    xhr.open("POST", "Controller/montage.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    str += "ok=1&photo=" + encodeURIComponent(data);
+    while (check[i])
+    {
+        if (check[i].checked)
+            str += "&montage" + i + "=" + encodeURIComponent(check[i].dataset.chemin);
+        i++;
+    }
+    str +=  "&top=" + encodeURIComponent(document.querySelector(".png_prise").style.top) +
+            "&left=" + encodeURIComponent(document.querySelector(".png_prise").style.left); 
+    xhr.send(str);
   }
 
 var promise = navigator.mediaDevices.getUserMedia({ audio: true, video: true, facingMode: "user" })
@@ -56,7 +128,6 @@ var promise = navigator.mediaDevices.getUserMedia({ audio: true, video: true, fa
             if (flag == 1)
             {
                 document.querySelector(".article > .capturer").addEventListener('click', function(ev){
-                    console.log("lololol");
                     ev.preventDefault();
                     takepicture();
                 }, false);
