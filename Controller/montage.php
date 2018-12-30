@@ -18,13 +18,13 @@ if (isset($_POST["photo"]) && isset($_POST["ok"]) && $_POST["ok"] == "1")
         $lo_img = imagesy($img);
         $la_photo = imagesx($photo);
         $lo_photo = imagesy($photo);
-        echo "[$la_photo, $lo_photo:". intval($_POST['left']). ":$la_img, $lo_img]". intval($_POST['top'])."]]";
-        imagecopy($photo, $img, 640 - intval($_POST["left"]), 480 - intval($_POST["top"]), 0, 0, $la_img, $lo_img);
+        //echo "[$la_photo, $lo_photo:". intval($_POST['left']). ":$la_img, $lo_img]". intval($_POST['top'])."]]";
+        imagecopy($photo, $img, $la_photo - $la_img, $lo_photo - $lo_img, 0, 0, $la_img, $lo_img);
         $i++;
     }
-
-    imagepng($photo, "../img/rendu/lol.png");
+    $a = rand();
+    imagepng($photo, "../img/rendu/lol".$a.".png");
     imagedestroy($photo);
-    // var_dump($img);
     imagedestroy($img);
+    header("Location: /camagru/Modeles/add_photo.php?chemin=/camagru/img/rendu/lol".$a.".png");
 }

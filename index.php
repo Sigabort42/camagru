@@ -49,6 +49,10 @@ else if (isset($_POST["submit"]) && $_POST["submit"] == "Connexion")
                                 );
     header("Location: /camagru/Modeles/connexion.php");
 }
+else if (isset($_GET["choice"]) && $_GET["choice"] == "3" && empty($_GET["ok"]))
+{
+    header("Location: /camagru/Modeles/galerie.php");
+}
 else if (isset($_GET["modif"]) && $_GET["modif"] == "1")
 {
     $nom = htmlentities($_POST["nom"]);

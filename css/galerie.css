@@ -4,4 +4,15 @@
     border-radius: 3%;
     border: 2px solid #7916a1;
     height: 600px;
+    display: flex;
+    justify-content: space-around;
+}
+.img_galerie
+{
+    margin: 0 auto;
+    padding: 1%;
+}
+h4, h5
+{
+    text-align: center;
 }

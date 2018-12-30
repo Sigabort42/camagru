@@ -15,6 +15,7 @@ try
         if ($donnees["email"] == $email && password_verify($pass, $donnees["pass"]))
         {
             $_SESSION["connected"] = "Bienvenue !";
+            $_SESSION['user']['id'] = $donnees["id"];
             $_SESSION['user']['nom'] = $donnees["nom"];
             $_SESSION['user']['prenom'] = $donnees["prenom"];
             $_SESSION['user']['sexe'] = $donnees["sexe"];
