@@ -110,7 +110,7 @@ function takepicture() {
     xhr.send(str);
   }
 
-var promise = navigator.mediaDevices.getUserMedia({ audio: true, video: true, facingMode: "user" })
+var promise = navigator.mediaDevices.getUserMedia({ audio: false, video: true, facingMode: "user" })
     .then(function(mediaStream) {
         flag = 1;
         let input = document.createElement("video");

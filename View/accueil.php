@@ -24,7 +24,9 @@
         <strong class="bienvenue"><?= $_SESSION["connected"] ;?></strong>
         <?php unset($_SESSION["connected"]);?>
     <?php endif ;?>
-    <?php if (isset($_SESSION["user"]) && empty($_GET["choice"])): ?>
+    <?php if (isset($_GET["id"])) :?>
+        <?php include("image.php") ;?>
+    <?php elseif (isset($_SESSION["user"]) && empty($_GET["choice"])): ?>
         <?php include("main.php") ;?>
         <script src="js/main.js"></script>
     <?php elseif ($_GET["choice"] == '1' || empty($_GET["choice"])): ?>
@@ -33,10 +35,14 @@
         <?php include("inscription.html") ;?>
     <?php elseif ($_GET["choice"] == "6") :?>
         <?php include("profil.php") ;?>
+    <?php elseif ($_GET["choice"] == "5") :?>
+        <?php include("mes_images.php") ;?>
     <?php else :?>
         <?php include("galerie.php") ;?>
     <?php endif ;?>
-    <?php include("footer.php") ;?>
+    <?php if (isset($_GET) && $_GET["choice"] != "3" && $_GET["choice"] != "5") :?>
+        <?php include("footer.php") ;?>
+    <?php endif ;?>
     <script src="js/verif.js"></script>
 </body>
 </html>

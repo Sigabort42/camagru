@@ -11,7 +11,7 @@ try
 
     $ret = $db->prepare($req);
     $ret->execute(array(
-        'nom' => "lollll",
+        'nom' => $_SESSION['user']['prenom'],
         'chemin' => htmlentities($_GET["chemin"]),
         'date_prise' => date("Y-m-d H:i:s"),
         'id_user' => $_SESSION["user"]["id"],
