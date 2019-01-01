@@ -12,7 +12,6 @@ function start_drag()
     dragged = document.querySelector('.png_prise');
 }
 
-
 while (check[i])
 {
     check[i].addEventListener("click", function(e){
@@ -84,8 +83,8 @@ function addEvent(obj,event,fct)
         obj.addEventListener(event,fct,true);
 }
 
-addEvent(document.querySelector(".article"),'mousemove',drag_onmousemove);
-addEvent(document.querySelector(".article"),'mouseup',drag_onmouseup);
+addEvent(document.querySelector(".article"), 'mousemove', drag_onmousemove);
+addEvent(document.querySelector(".article"), 'mouseup', drag_onmouseup);
 
 function takepicture() {
     let i = 0;
@@ -108,7 +107,7 @@ function takepicture() {
     str +=  "&top=" + encodeURIComponent(document.querySelector(".png_prise").style.top) +
             "&left=" + encodeURIComponent(document.querySelector(".png_prise").style.left); 
     xhr.send(str);
-  }
+}
 
 var promise = navigator.mediaDevices.getUserMedia({ audio: false, video: true, facingMode: "user" })
     .then(function(mediaStream) {

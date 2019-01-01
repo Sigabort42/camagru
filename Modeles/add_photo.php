@@ -17,6 +17,17 @@ try
         'id_user' => $_SESSION["user"]["id"],
         'id_popularites' => $_SESSION["user"]["id"]
     ));
+    $req = "INSERT INTO popularites(nom, chemin, date_prise, id_user, id_popularites)
+            VALUES(:nom, :chemin, :date_prise, :id_user, :id_popularites)";
+
+    $ret = $db->prepare($req);
+    $ret->execute(array(
+        'nom' => $_SESSION['user']['prenom'],
+        'chemin' => htmlentities($_GET["chemin"]),
+        'date_prise' => date("Y-m-d H:i:s"),
+        'id_user' => $_SESSION["user"]["id"],
+        'id_popularites' => $_SESSION["user"]["id"]
+    ));
 }
 catch(Exception $e)
 {
