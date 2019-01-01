@@ -3,8 +3,8 @@ session_start();
 
 include("../config/database.php");
 
-$email = $_SESSION["verif_user"]["email"];
-$pass = $_SESSION["verif_user"]["pass"];
+$email  = $_SESSION["verif_user"]["email"];
+$pass   = $_SESSION["verif_user"]["pass"];
 
 try
 {
@@ -14,14 +14,14 @@ try
     {
         if ($donnees["email"] == $email && password_verify($pass, $donnees["pass"]))
         {
-            $_SESSION["connected"] = "Bienvenue !";
-            $_SESSION['user']['id'] = $donnees["id"];
-            $_SESSION['user']['nom'] = $donnees["nom"];
+            $_SESSION["connected"]      = "Bienvenue !";
+            $_SESSION['user']['id']     = $donnees["id"];
+            $_SESSION['user']['nom']    = $donnees["nom"];
             $_SESSION['user']['prenom'] = $donnees["prenom"];
-            $_SESSION['user']['sexe'] = $donnees["sexe"];
-            $_SESSION['user']['date'] = $donnees["date"];
-            $_SESSION['user']['email'] = $donnees["email"];
-            $_SESSION['user']['pass'] = $donnees["pass"];
+            $_SESSION['user']['sexe']   = $donnees["sexe"];
+            $_SESSION['user']['date']   = $donnees["date"];
+            $_SESSION['user']['email']  = $donnees["email"];
+            $_SESSION['user']['pass']   = $donnees["pass"];
         }
     }
     if (empty($_SESSION["connected"]))

@@ -3,7 +3,7 @@
 ?>
 
 <section id="galerie">
-    <?php foreach($_SESSION["galerie"] as $v) :?>
+    <?php foreach($_SESSION["galeries"] as $v) :?>
         <aside class="aside">
         <a href="index.php?id=<?= $v["id"]; ?>">
             <img class="img_galerie" src="<?= $v["chemin"]; ?>" alt="<?= $v["nom"]; ?>"/>

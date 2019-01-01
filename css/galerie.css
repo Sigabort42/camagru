@@ -28,6 +28,12 @@ h4, h5
 {
     margin: 0 auto;
 }
+.image_galeries
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .image_solo
 {
     border-radius: 5%;
@@ -51,4 +57,18 @@ textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
+}
+em
+{
+    font-size: 20px;
+}
+.comment
+{
+    text-align: center;
+    margin: 0 auto;
+}
+.ok
+{
+    border: 2px solid grey;
+    border-radius: 20%;
 }

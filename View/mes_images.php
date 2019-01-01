@@ -3,7 +3,7 @@
 ?>
 
 <section id="galerie">
-    <?php foreach($_SESSION["galerie"] as $v) : ?>
+    <?php foreach($_SESSION["galeries"] as $v) : ?>
         <?php if ($v["id_user"] == $_SESSION["user"]["id"]) :?>
             <aside class="aside">
                 <a href="index.php?id=<?= $v["id"]; ?>">

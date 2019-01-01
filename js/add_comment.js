@@ -1,6 +1,6 @@
 "use strict";
 
-var like = document.querySelector(".image_galeries");
+var like = document.querySelectorAll(".image_galeries > .like");
 
 function getXMLHttpRequest() {
 	var xhr = null;
@@ -23,19 +23,23 @@ function getXMLHttpRequest() {
 	return xhr;
 }
 
-function ft_like_or_comment()
+function ft_like_or_comment(e)
 {
     let str = "";
-    console.log("commenrekk");
     let xhr = getXMLHttpRequest();
     xhr.open("POST", "Modeles/add_comment.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    str += "photo=" + "lololol";
-    str +=  "&top=" + "lililil" + "&left=" + "lklklklk";
+    str += "verif=" + e.target.value + "&comment=" + document.querySelector(".comment").value + "&id=" + location.search.split("=")[1];
     xhr.send(str);
 }
 
-like.addEventListener("click", function(e){
+like[0].addEventListener("click", function(e){
+	console.log(e.target.value);
     e.preventDefault();
-    ft_like_or_comment();
+    ft_like_or_comment(e);
+});
+like[1].addEventListener("click", function(e){
+	console.log(e.target.value);
+    e.preventDefault();
+    ft_like_or_comment(e);
 });

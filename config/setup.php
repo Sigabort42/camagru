@@ -5,8 +5,8 @@ include("database.php");
 
 try
 {
-    $pdo = new PDO("$DB_DSN;port=8889", $DB_USER, $DB_PASSWORD);
-    $db_create = "CREATE DATABASE IF NOT EXISTS $DB_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
+    $pdo        = new PDO("$DB_DSN;port=8889", $DB_USER, $DB_PASSWORD);
+    $db_create  = "CREATE DATABASE IF NOT EXISTS $DB_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
     $pdo->prepare($db_create)->execute();
 }
 catch(Exception $e)
@@ -35,7 +35,6 @@ try
                 chemin VARCHAR(255) NOT NULL,
                 date_prise VARCHAR(40) NOT NULL,
                 id_user INT UNSIGNED NOT NULL,
-                id_popularites INT UNSIGNED NOT NULL,
                 PRIMARY KEY (id)
                 )
                 ENGINE=INNODB";
