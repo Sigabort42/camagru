@@ -11,7 +11,7 @@
     <img class="image_solo" src="<?= $v["chemin"]; ?>" alt="<?= $v["nom"]; ?>"/>
     <h4><?= $v["nom"]; ?></h4>
     <h5><?= $v["date_prise"]; ?></h5>
-    <input type="submit" class="like" value="Like"/>
+    <input type="submit" class="like" data-value="Like" value="Like <?= $v["like_photo"];?>"/>
     <textarea name="comment" class="comment" cols="30" rows="10" placeholder="Commentaire" autocomplete="on"></textarea>
     <input type="submit" class="like" value="Commenter" />
     <aside class="comment">

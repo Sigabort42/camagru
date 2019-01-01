@@ -26,10 +26,11 @@ function getXMLHttpRequest() {
 function ft_like_or_comment(e)
 {
     let str = "";
-    let xhr = getXMLHttpRequest();
+	let xhr = getXMLHttpRequest();
+	console.log(e.target.dataset.value);
     xhr.open("POST", "Modeles/add_comment.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    str += "verif=" + e.target.value + "&comment=" + document.querySelector(".comment").value + "&id=" + location.search.split("=")[1];
+    str += "verif=" + e.target.dataset.value + "&comment=" + document.querySelector(".comment").value + "&id=" + location.search.split("=")[1];
     xhr.send(str);
 }
 

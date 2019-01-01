@@ -13,15 +13,11 @@ try
     if ($_POST["verif"] == "Like")
     {
         $req = "UPDATE popularites SET
-                like_photo              = like_photo + 1,
-                commentaires            = :commentaires,
-                date_commentaires       = :date_commentaires
+                like_photo              = like_photo + 1
                 WHERE id_galerie        = :idd";
 
         $ret = $db->prepare($req);
         var_dump($ret->execute(array(
-            'commentaires'              => htmlentities($_POST["comment"]),
-            'date_commentaires'         => date("Y-m-d H:i:s"),
             'idd'                       => $id
         )));
     }
@@ -36,7 +32,7 @@ try
             'commentaires'              => htmlentities($_POST["comment"]),
             'date_commentaires'         => date("Y-m-d H:i:s"),
             'id_user'                   => $_SESSION["user"]["id"],
-            'id_galerie'                => $_POST["id"]
+            'id_galerie'                => $id
         ));
     }
 }
