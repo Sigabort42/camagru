@@ -31,8 +31,10 @@
         <script src="js/main.js"></script>
     <?php elseif ($_GET["choice"] == '1' || empty($_GET["choice"])): ?>
         <?php include("Connexion.html") ;?>
+        <script src="js/verif.js"></script>
     <?php elseif ($_GET["choice"] == '2'): ?>
         <?php include("inscription.html") ;?>
+        <script src="js/verif.js"></script>
     <?php elseif ($_GET["choice"] == "6") :?>
         <?php include("profil.php") ;?>
     <?php elseif ($_GET["choice"] == "5") :?>
@@ -43,6 +45,5 @@
     <?php if (isset($_GET) && $_GET["choice"] != "3" && $_GET["choice"] != "5") :?>
         <?php include("footer.php") ;?>
     <?php endif ;?>
-    <script src="js/verif.js"></script>
 </body>
 </html>

@@ -12,14 +12,9 @@ try
     $db = new PDO("$DB_DSN;port=8889;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASSWORD);
     if ($_POST["verif"] == "Like")
     {
-        $req = "UPDATE popularites SET
-                like_photo              = like_photo + 1
-                WHERE id_galerie        = :idd";
-
+        $req = "UPDATE popularites SET like_photo = like_photo + 1 WHERE id_galerie = :idd";
         $ret = $db->prepare($req);
-        var_dump($ret->execute(array(
-            'idd'                       => $id
-        )));
+        $ret->execute(array('idd' => $id));
     }
     else
     {

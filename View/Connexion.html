@@ -1,5 +1,5 @@
 <section id="connexion">
-    <form method="POST" action="index.php">
+    <form onsubmit="return verifForm()" class="formulaire" method="POST" action="index.php">
         <input class="email" type="text" name="email" placeholder="@"/>
         <input type="text" name="pass" placeholder="Password"/>
         <input class="submit" name="submit" type="submit" placeholder="Connecter" value="Connexion"/>
