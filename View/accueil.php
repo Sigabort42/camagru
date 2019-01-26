@@ -20,13 +20,17 @@
 <body>
 
     <?php include("header.php") ;?>
+    <?php if (isset($_GET["erreur"])) :?>
+        <strong class="bienvenue"><?= $_GET["erreur"] ;?></strong>
+        <?php unset($_SESSION["connected"]);?>
+    <?php endif ;?>
     <?php if (isset($_SESSION["connected"])) :?>
         <strong class="bienvenue"><?= $_SESSION["connected"] ;?></strong>
         <?php unset($_SESSION["connected"]);?>
     <?php endif ;?>
     <?php if (isset($_GET["id"])) :?>
         <?php include("image.php") ;?>
-    <?php elseif (isset($_SESSION["user"]) && empty($_GET["choice"])): ?>
+    <?php elseif (empty($_GET["erreur"]) && isset($_SESSION["user"]) && empty($_GET["choice"])): ?>
         <?php include("main.php") ;?>
         <script src="js/main.js"></script>
     <?php elseif ($_GET["choice"] == '1' || empty($_GET["choice"])): ?>

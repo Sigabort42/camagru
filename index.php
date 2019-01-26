@@ -18,10 +18,12 @@ if (isset($_GET["choice"]) && $_GET["choice"] == "4")
 {
     session_destroy();
     header("Location: index.php");
+    exit();
 }
-else if (empty($_SESSION["png"]) && empty($_GET["choice"]))
+else if (empty($_GET["erreur"]) && empty($_SESSION["png"]) && empty($_GET["choice"]))
 {
     header("Location: /camagru/Modeles/main.php");
+    exit();
 }
 else if (isset($_POST["submit"]) && $_POST["submit"] == "Inscription")
 {
@@ -38,6 +40,7 @@ else if (isset($_POST["submit"]) && $_POST["submit"] == "Inscription")
                                 "pass"          => $pass,
                             );
     header("Location: /camagru/Modeles/inscription.php");
+    exit();
 }
 else if (isset($_POST["submit"]) && $_POST["submit"] == "Connexion")
 {
@@ -48,10 +51,12 @@ else if (isset($_POST["submit"]) && $_POST["submit"] == "Connexion")
                                     "pass"      => $pass
                                 );
     header("Location: /camagru/Modeles/connexion.php");
+    exit();
 }
 else if (isset($_GET["choice"]) && $_GET["choice"] == "3" && empty($_GET["ok"]))
 {
     header("Location: /camagru/Modeles/galerie.php");
+    exit();
 }
 else if (isset($_GET["modif"]) && $_GET["modif"] == "1")
 {

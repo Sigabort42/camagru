@@ -19,12 +19,12 @@ try
     $db = new PDO("$DB_DSN;port=8889;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASSWORD);
     $tables = " CREATE TABLE user (
                 id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-                nom VARCHAR(40) NOT NULL,
+                nom VARCHAR(255) NOT NULL,
                 prenom VARCHAR(255) NOT NULL,
                 sexe VARCHAR(40) NOT NULL,
-                date_naissance VARCHAR(40),
+                date_naissance VARCHAR(255),
                 email VARCHAR(255) NOT NULL,
-                pass VARCHAR(255) NOT NULL,
+                pass TEXT NOT NULL,
                 PRIMARY KEY (id)
                 )
                 ENGINE=INNODB";

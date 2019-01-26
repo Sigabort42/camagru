@@ -13,10 +13,16 @@ $pass       = password_hash($_SESSION['user']['pass'], PASSWORD_BCRYPT);
 try
 {
     $db     = new PDO("$DB_DSN;port=8889;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASSWORD);
-    $req    = "INSERT INTO user(nom, prenom, sexe, date_naissance, email, pass)
-            VALUES(:nom, :prenom, :sexe, :dates, :email, :pass)";
-    
-    
+    $verif_email = $db->query("SELECT email FROM user WHERE email = '$email'");
+    if ($verif_email->fetch())
+    {
+        session_destroy();
+        header("Location: /camagru/index.php?erreur=Email deja existant!");
+        exit();
+    }
+    $db     = new PDO("$DB_DSN;port=8889;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASSWORD);
+    $req    = " INSERT INTO user(nom, prenom, sexe, date_naissance, email, pass)
+                VALUES(:nom, :prenom, :sexe, :dates, :email, :pass)";        
     $ret = $db->prepare($req);
     $ret->execute(array(
         'nom'       => $nom,
