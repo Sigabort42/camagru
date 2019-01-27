@@ -10,6 +10,7 @@ try
                         FROM galerie
                         INNER JOIN popularites ON popularites.id_galerie = galerie.id");
     $_SESSION["galerie"] = $resp->fetchAll();
+    $db = new PDO("$DB_DSN;port=8889;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASSWORD);
     $resp = $db->query("SELECT * FROM galerie");
     $_SESSION["galeries"] = $resp->fetchAll();
     header("Location: /camagru/index.php?choice=3&ok=1");

@@ -1,7 +1,5 @@
 <?php
 
-// var_dump($_POST);
-
 if (isset($_POST["photo"]) && isset($_POST["ok"]) && $_POST["ok"] == "1")
 {
     $p      = explode(',', $_POST['photo']);

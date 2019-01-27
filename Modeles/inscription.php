@@ -32,6 +32,8 @@ try
         'email'     => $email, 
         'pass'      => $pass
     ));
+    $nb_user = $db->query("SELECT id FROM user COUNT");
+    $_SESSION["user"]["id"] = count($nb_user->fetchAll());
     $_SESSION["connected"] = "Bienvenue!";
 }
 catch(Exception $e)
