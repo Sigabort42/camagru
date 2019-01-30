@@ -1,9 +1,10 @@
 "use strict";
 
-var like = document.querySelectorAll(".image_galeries > .like");
+let like = document.querySelectorAll(".image_galeries > .like");
+let xhr = "";
 
 function getXMLHttpRequest() {
-	var xhr = null;
+	let xhr = null;
 	
 	if (window.XMLHttpRequest || window.ActiveXObject) {
 		if (window.ActiveXObject) {
@@ -26,21 +27,31 @@ function getXMLHttpRequest() {
 function ft_like_or_comment(e)
 {
     let str = "";
-	let xhr = getXMLHttpRequest();
-	console.log(e.target.dataset.value);
-    xhr.open("POST", "Modeles/add_comment.php", true);
+	xhr = getXMLHttpRequest();
+	xhr.open("POST", "Modeles/add_comment.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     str += "verif=" + e.target.dataset.value + "&comment=" + document.querySelector(".comment").value + "&id=" + location.search.split("=")[1];
-    xhr.send(str);
+	xhr.send(str);
+	xhr.addEventListener("load", function (){
+		let data = "";
+		data = JSON.parse(xhr.responseText);
+		if (data["mode"] == "0")
+			like[0].value = "Like " + data["like_photo"]; 
+		else if (data["mode"] == "1")
+		{
+			let cm = document.querySelector(".image_galeries .comment .ok").cloneNode(true);
+			let comment = document.querySelectorAll(".image_galeries .comment");
+			cm.innerHTML = "<em><p class='cm'>" + data["comment"] + "</p></em> <strong><p class='date_cm'>" + data["date_comment"] + "</p></strong>";
+			comment[1].append(cm);
+		}
+	})
 }
 
 like[0].addEventListener("click", function(e){
-	console.log(e.target.value);
     e.preventDefault();
-    ft_like_or_comment(e);
+	ft_like_or_comment(e);
 });
 like[1].addEventListener("click", function(e){
-	console.log(e.target.value);
     e.preventDefault();
     ft_like_or_comment(e);
 });

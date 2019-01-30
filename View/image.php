@@ -18,8 +18,8 @@
         <?php foreach($_SESSION["galerie"] as $v) :?>
         <?php if ($v["id"] == $_GET["id"] && $v["commentaires"] != "") :?>
             <div class="ok">
-                <em><p><?= $v["commentaires"] ;?></p></em>
-                <strong><p><?= $v["date_commentaires"] ;?></p></strong>
+                <em><p class="cm"><?= $v["commentaires"] ;?></p></em>
+                <strong><p class="date_cm"><?= $v["date_commentaires"] ;?></p></strong>
             </div>
         <?php endif ;?>
         <?php endforeach ;?>

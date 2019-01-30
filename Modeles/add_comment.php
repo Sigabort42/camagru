@@ -1,7 +1,5 @@
 <?php
 
-var_dump($_POST);
-
 $id = htmlentities($_POST["id"]);
 
 session_start();
@@ -15,9 +13,13 @@ try
         $req = "UPDATE popularites SET like_photo = like_photo + 1 WHERE id_galerie = :idd";
         $ret = $db->prepare($req);
         $ret->execute(array('idd' => $id));
+        $req = $db->query("SELECT like_photo FROM popularites WHERE id_galerie = $id");
+        $ret = Array("like_photo" => $req->fetch()["like_photo"], "mode" => "0");
+        echo json_encode($ret);
     }
     else
     {
+        $date = date("Y-m-d H:i:s");
         $req = "INSERT INTO popularites(like_photo, commentaires, date_commentaires, id_user, id_galerie)
             VALUES(:like_photo, :commentaires, :date_commentaires, :id_user, :id_galerie)";
 
@@ -25,10 +27,12 @@ try
         $ret->execute(array(
             'like_photo'                => "0",
             'commentaires'              => htmlentities($_POST["comment"]),
-            'date_commentaires'         => date("Y-m-d H:i:s"),
+            'date_commentaires'         => $date,
             'id_user'                   => $_SESSION["user"]["id"],
             'id_galerie'                => $id
         ));
+        $ret = Array("comment" => htmlentities($_POST["comment"]), "mode" => "1", "date_comment" => $date);
+        echo json_encode($ret);
     }
 }
 catch(Exception $e)
