@@ -15,6 +15,8 @@
     <textarea name="comment" class="comment" cols="30" rows="10" placeholder="Commentaire" autocomplete="on"></textarea>
     <input type="submit" class="like" value="Commenter" />
     <aside class="comment">
+    <div class="ok">
+    </div>
         <?php foreach($_SESSION["galerie"] as $v) :?>
         <?php if ($v["id"] == $_GET["id"] && $v["commentaires"] != "") :?>
             <div class="ok">

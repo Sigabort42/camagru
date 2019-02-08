@@ -9,6 +9,7 @@ session_start();
 // 4 == deconnexion
 // 5 Mes images
 // 6 Profil
+// 7 reinitialise
 
 // echo "salut toi comment tu va";
 

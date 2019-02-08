@@ -1,8 +1,9 @@
 <?php
 
 session_start();
+echo phpinfo();
 
-var_dump($_POST["email"]);
+// var_dump($_POST["email"]);
 var_dump($_SESSION["user"]["email"]);
 
 if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
@@ -18,17 +19,17 @@ if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
         $passage_ligne = "\n";
     }
     //=====Déclaration des messages au format texte et au format HTML.
-    $message_txt = "Message de  " . htmlspecialchars($_POST['nom']) . $passage_ligne . $passage_ligne .
+    $message_txt = "Bonjourno " . htmlspecialchars($_SESSION["user"]['nom']) . " .Voici le lien pour reinitialise votre mot de passe http://localhost:8888/camagru/index.php?choice=7" . $passage_ligne . $passage_ligne .
 
-    "Message partie php" . htmlspecialchars($_POST['message'])  . $passage_ligne .
+    "Message partie php" . htmlspecialchars($_SESSION["user"]['email'])  . $passage_ligne .
 // "Telephone : " . $_POST['phone'] . $passage_ligne .
-    "email " . htmlspecialchars($_POST['mail'])  . $passage_ligne . $passage_ligne .
+    "email " . htmlspecialchars($_SESSION["user"]['mail'])  . $passage_ligne . $passage_ligne .
     
     
-    $message_html = "<html><head></head><body>Message de " . $_POST['nom'] ."<br /><br /> 
-    <strong>Message : </strong> " . $_POST['message'] .  "<br /> 
+    $message_html = "<html><head></head><body>Bonjour " . htmlspecialchars($_SESSION["user"]['nom']) ."<br /><br /> 
+    <strong></strong> " . " .Voici le lien pour reinitialise votre mot de passe http://localhost:8888/camagru/index.php?choice=7" .  "<br /> 
 
-    <strong>email : </strong>" . $_POST['mail'] . "<br />
+    <strong>email : </strong>" . $_SESSION["user"]['email'] . "<br />
     
     </body></html>";
     //==========
@@ -42,8 +43,8 @@ if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
     //=========
     
     //=====Création du header de l'e-mail.
-    $header = "From: \"MyCvsite\"<".$_SESSION["user"]["email"].">".$passage_ligne;
-    $header.= "Reply-to: \"MyCvsite\" <".$_SESSION["user"]["email"].">".$passage_ligne;
+    $header = "From: \"camagru \"<".$_SESSION["user"]["email"].">".$passage_ligne;
+    $header.= "Reply-to: \"camagru \" <".$_SESSION["user"]["email"].">".$passage_ligne;
     $header .= "Bcc: <".$_SESSION["user"]["email"].">" .$passage_ligne;
     $header.= "MIME-Version: 1.0".$passage_ligne;
     $header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
@@ -66,6 +67,8 @@ if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
     $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
     //==========   
     //=====Envoi de l'e-mail.
-    mail($mail,$sujet,$message,$header);
+    var_dump($message);
+    var_dump(mail($mail,$sujet,$message,$header));
+    // echo "<p>Veuillez consulter votre boite mail pour reinitialiser votre mot de passe !</p>";
 }
 ?>

@@ -5,12 +5,33 @@ $id = htmlentities($_POST["id"]);
 session_start();
 include("../config/database.php");
 
+if (empty($_SESSION["user"]))
+{
+    $_SESSION["connected"] = "Veuillez vous connecter";
+    echo "Veuillez vous connecter";
+    exit;
+}
+else if (!$_SESSION["user"]["like_photo_id"])
+{
+    $_SESSION["user"]["like_photo_id"] = array();
+}
+
 try
 {
     $db = new PDO("$DB_DSN;port=8889;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASSWORD);
     if ($_POST["verif"] == "Like")
     {
-        $req = "UPDATE popularites SET like_photo = like_photo + 1 WHERE id_galerie = :idd";
+        if (in_array($id, $_SESSION["user"]["like_photo_id"]))
+        {
+            unset($_SESSION["user"]["like_photo_id"][array_search($id, $_SESSION["user"]["like_photo_id"])]);
+            $_SESSION["user"]["like_photo_id"] = array_values($_SESSION["user"]["like_photo_id"]);
+            $req = "UPDATE popularites SET like_photo = like_photo - 1 WHERE id_galerie = :idd";
+        }
+        else
+        {
+            array_push($_SESSION["user"]["like_photo_id"], $id);
+            $req = "UPDATE popularites SET like_photo = like_photo + 1 WHERE id_galerie = :idd";
+        }
         $ret = $db->prepare($req);
         $ret->execute(array('idd' => $id));
         $req = $db->query("SELECT like_photo FROM popularites WHERE id_galerie = $id");

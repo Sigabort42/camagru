@@ -12,6 +12,8 @@ function start_drag()
     dragged = document.querySelector('.png_prise');
 }
 
+// if (file_photo)
+
 while (check[i])
 {
     check[i].addEventListener("click", function(e){
@@ -109,6 +111,11 @@ function takepicture() {
     xhr.send(str);
 }
 
+function    ft_upload()
+{
+    console.log(file_photo.value);
+}
+
 var promise = navigator.mediaDevices.getUserMedia({ audio: false, video: true, facingMode: "user" })
     .then(function(mediaStream) {
         flag = 1;
@@ -138,6 +145,24 @@ var promise = navigator.mediaDevices.getUserMedia({ audio: false, video: true, f
 //        console.log(err.name + ": " + err.message);
             var input = document.createElement("input");
             input.setAttribute("type", "file");
+            input.setAttribute("class", "file_photo_input");
             var article = document.querySelector(".article");
             var res = article.append(input);
+            var file_photo = document.querySelector('.prise .article > .file_photo_input');
+            file_photo.addEventListener("change", function (e){
+                console.log("lolldksfjsldkj");
+                console.log(file_photo.value);
+                input = document.createElement("input");
+                input.setAttribute("type", "submit");
+                input.setAttribute("class", "capturer");
+                input.setAttribute("value", "Capturer");
+                article = document.querySelector(".article");
+                res = article.append(input);
+                input = document.createElement("img");
+                input.setAttribute("src", file_photo.value.split("\\").join("/").replace("C:", ""));
+                input.setAttribute("class", "capturer");
+                article = document.querySelector(".article");
+                res = article.append(input);
+                
+            });
 });
