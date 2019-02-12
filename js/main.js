@@ -150,19 +150,21 @@ var promise = navigator.mediaDevices.getUserMedia({ audio: false, video: true, f
             var res = article.append(input);
             var file_photo = document.querySelector('.prise .article > .file_photo_input');
             file_photo.addEventListener("change", function (e){
-                console.log("lolldksfjsldkj");
-                console.log(file_photo.value);
-                input = document.createElement("input");
-                input.setAttribute("type", "submit");
-                input.setAttribute("class", "capturer");
-                input.setAttribute("value", "Capturer");
-                article = document.querySelector(".article");
-                res = article.append(input);
-                input = document.createElement("img");
-                input.setAttribute("src", file_photo.value.split("\\").join("/").replace("C:", ""));
-                input.setAttribute("class", "capturer");
-                article = document.querySelector(".article");
-                res = article.append(input);
-                
+                var reader = new FileReader();
+                reader.addEventListener('load', function() {
+                    input = document.createElement("input");
+                    input.setAttribute("type", "submit");
+                    input.setAttribute("class", "capturer");
+                    input.setAttribute("value", "Capturer");
+                    article = document.querySelector(".article");
+                    res = article.append(input);
+                    input = document.createElement("img");
+                    input.setAttribute("src", reader.result);
+                    input.setAttribute("class", "capturer");
+                    input.setAttribute("style", "width:640px ;height:480px;text-align: center;");
+                    article = document.querySelector(".article");
+                    res = article.append(input);
+                });
+                reader.readAsDataURL(file_photo.files[0]);
             });
 });
