@@ -22,14 +22,14 @@ while (check[i])
             let input = document.createElement("img");
             input.setAttribute("src", "/camagru/" + e.target.dataset.chemin);
             let name = e.target.dataset.chemin.substr(e.target.dataset.chemin.lastIndexOf("/") + 1, 5);
-            input.setAttribute("class", "png_prise " + name);
+            input.setAttribute("class", "img png_prise " + name);
             input.setAttribute("onmousedown", "start_drag()");
             let article = document.querySelector(".article");
             let res = article.append(input);
         }
         else
         {
-            let input = document.querySelector(".article > img");
+            let input = document.querySelector(".article > .img");
             let article = document.querySelector(".article");
             let res = article.removeChild(input);
         }
@@ -106,8 +106,9 @@ function takepicture() {
             str += "&montage" + i + "=" + encodeURIComponent(check[i].dataset.chemin);
         i++;
     }
-    str +=  "&top=" + encodeURIComponent(document.querySelector(".png_prise").style.top) +
-            "&left=" + encodeURIComponent(document.querySelector(".png_prise").style.left); 
+    str +=  "&top=" + 320 + "&left=" + 320;
+    // str +=  "&top=" + encodeURIComponent(document.querySelector(".png_prise").style.top) +
+    //         "&left=" + encodeURIComponent(document.querySelector(".png_prise").style.left); 
     xhr.send(str);
 }
 
@@ -161,7 +162,7 @@ var promise = navigator.mediaDevices.getUserMedia({ audio: false, video: true, f
                     input = document.createElement("img");
                     input.setAttribute("src", reader.result);
                     input.setAttribute("class", "capturer");
-                    input.setAttribute("style", "width:640px ;height:480px;text-align: center;");
+                    input.setAttribute("style", "width:640px ;height:480px;margin: 0 auto;");
                     article = document.querySelector(".article");
                     res = article.append(input);
                 });

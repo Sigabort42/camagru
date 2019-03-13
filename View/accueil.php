@@ -43,6 +43,8 @@
         <?php include("profil.php") ;?>
     <?php elseif ($_GET["choice"] == "5") :?>
         <?php include("mes_images.php") ;?>
+    <?php elseif ($_GET["choice"] == "7") :?>
+        <?php include("update_password.php") ;?>
     <?php else :?>
         <?php include("galerie.php") ;?>
     <?php endif ;?>

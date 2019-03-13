@@ -1,13 +1,10 @@
 <?php
 
 session_start();
-echo phpinfo();
-
-// var_dump($_POST["email"]);
-var_dump($_SESSION["user"]["email"]);
 
 if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
 {
+    $_SESSION["user"]['admin'] = "camagru@gmail.com";
     $mail = $_SESSION["user"]["email"];
     // Déclaration de l'adresse de destination.
     if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
@@ -16,20 +13,19 @@ if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
     }
     else
     {
-        $passage_ligne = "\n";
+        $passage_ligne = "\r\n";
     }
     //=====Déclaration des messages au format texte et au format HTML.
-    $message_txt = "Bonjourno " . htmlspecialchars($_SESSION["user"]['nom']) . " .Voici le lien pour reinitialise votre mot de passe http://localhost:8888/camagru/index.php?choice=7" . $passage_ligne . $passage_ligne .
+    $message_txt = "Bonjour " . htmlspecialchars($_SESSION["user"]['nom']) . " .Voici le lien pour reinitialise votre mot de passe http://localhost:8888/camagru/index.php?choice=7" . $passage_ligne . $passage_ligne .
 
     "Message partie php" . htmlspecialchars($_SESSION["user"]['email'])  . $passage_ligne .
-// "Telephone : " . $_POST['phone'] . $passage_ligne .
-    "email " . htmlspecialchars($_SESSION["user"]['mail'])  . $passage_ligne . $passage_ligne .
+    "email " . htmlspecialchars($_SESSION["user"]['admin'])  . $passage_ligne . $passage_ligne .
     
     
     $message_html = "<html><head></head><body>Bonjour " . htmlspecialchars($_SESSION["user"]['nom']) ."<br /><br /> 
     <strong></strong> " . " .Voici le lien pour reinitialise votre mot de passe http://localhost:8888/camagru/index.php?choice=7" .  "<br /> 
 
-    <strong>email : </strong>" . $_SESSION["user"]['email'] . "<br />
+    <strong>email : </strong>" . $_SESSION["user"]['admin'] . "<br />
     
     </body></html>";
     //==========
@@ -43,9 +39,8 @@ if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
     //=========
     
     //=====Création du header de l'e-mail.
-    $header = "From: \"camagru \"<".$_SESSION["user"]["email"].">".$passage_ligne;
-    $header.= "Reply-to: \"camagru \" <".$_SESSION["user"]["email"].">".$passage_ligne;
-    $header .= "Bcc: <".$_SESSION["user"]["email"].">" .$passage_ligne;
+    $header = "From: \"camagru \"<".$_SESSION["user"]["admin"].">".$passage_ligne;
+    $header.= "Reply-to: \"camagru \" <".$_SESSION["user"]["admin"].">".$passage_ligne;
     $header.= "MIME-Version: 1.0".$passage_ligne;
     $header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
     //==========
@@ -67,8 +62,7 @@ if (strstr($_SERVER["HTTP_REFERER"], "choice=6"))
     $message.= $passage_ligne."--".$boundary."--".$passage_ligne;
     //==========   
     //=====Envoi de l'e-mail.
-    var_dump($message);
-    var_dump(mail($mail,$sujet,$message,$header));
-    // echo "<p>Veuillez consulter votre boite mail pour reinitialiser votre mot de passe !</p>";
+    mail($mail,$sujet,$message,$header);
+    echo "<p>Veuillez consulter votre boite mail pour reinitialiser votre mot de passe !</p><a href='/camagru/index.php'>Revenir au site<a/>";
 }
 ?>

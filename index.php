@@ -15,6 +15,18 @@ session_start();
 
 // var_dump($_POST);
 
+if (isset($_GET["confirm"]) && $_GET["confirm"] == "1")
+{
+    if ($_POST["pass"] != $_POST["confirm_pass"])
+    {
+        header("Location: index.php?erreur=Erreur dans le mot de passe");
+        exit();
+    }
+    $_SESSION["user"]["new_pass"] = htmlspecialchars($_POST["pass"]);
+    header("Location: /camagru/Modeles/update_password.php");
+    exit();
+}
+
 if (isset($_GET["choice"]) && $_GET["choice"] == "4")
 {
     session_destroy();

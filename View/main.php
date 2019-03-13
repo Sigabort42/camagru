@@ -1,6 +1,16 @@
 <?php
     session_start();
 ?>
+<!-- <style>
+    .test
+    {
+        border: 2px solid red;
+    }
+    .tst
+    {
+        border: 2px solid blue;
+    }
+</style> -->
 <main>
     <section class="image">
         <?php foreach($_SESSION["png"] as $value): ?>
@@ -9,6 +19,8 @@
         <?php endforeach ;?>
     </section>
     <section class="prise">
+    <!-- <div class="test">allo</div>
+    <div class="tst">lolol</div> -->
         <h1>Salut <em><?= $_SESSION["user"]["prenom"];?></em></h1>
         <article class="article">
         </article>

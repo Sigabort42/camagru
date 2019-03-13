@@ -1,5 +1,6 @@
 <?php
 
+// var_dump($_POST);
 if (isset($_POST["photo"]) && isset($_POST["ok"]) && $_POST["ok"] == "1")
 {
     $p      = explode(',', $_POST['photo']);
@@ -14,7 +15,8 @@ if (isset($_POST["photo"]) && isset($_POST["ok"]) && $_POST["ok"] == "1")
         $lo_img     = imagesy($img);
         $la_photo   = imagesx($photo);
         $lo_photo   = imagesy($photo);
-        //echo "[$la_photo, $lo_photo:". intval($_POST['left']). ":$la_img, $lo_img]". intval($_POST['top'])."]]";
+        echo ":$img:[la_photo $la_photo, lo_photo $lo_photo:". intval($_POST['left']). "la_img :$la_img, lo_img $lo_img]". intval($_POST['top'])."]";
+        // imagecopy($photo, $img, $_POST["top"], $_POST["left"], 0, 0, $la_img, $lo_img);
         imagecopy($photo, $img, $la_photo - $la_img, $lo_photo - $lo_img, 0, 0, $la_img, $lo_img);
         $i++;
     }
